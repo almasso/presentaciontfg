@@ -37,13 +37,39 @@
 }
 \makeatother
 
-\title[Motor y editor de videojuegos en 2D enfocado al desarrollo de juegos RPG]{Motor y editor de videojuegos en 2D enfocado al desarrollo de juegos RPG}
+\title[Motor y editor de videojuegos en 2D enfocado al desarrollo de juegos RPG]{\textbf{Motor y editor de videojuegos en 2D enfocado al desarrollo de juegos RPG}}
 \subtitle{2D video game engine and editor focused on RPG game development}
 \author[Miguel Curros, Alejandro González y Alejandro Massó]{Miguel Curros García\\ Alejandro González Sánchez\\ Alejandro Massó Martínez}
 \date{10 de junio de 2025}
+\institute{Grado en Desarrollo de Videojuegos\\ Facultad de Informática\\ Universidad Complutense de Madrid}
 
 \newcommand{\baker}{%
 	\textsc{RPGBaker}%
+}
+
+\newcommand{\tutor}[1]{\def\inserttutor{#1}}
+
+\tutor{Pedro Pablo Gómez Martín}
+
+\setbeamertemplate{title page}{
+  \vbox{}
+  \vfill
+  \begin{center}
+    \begin{beamercolorbox}[wd=\textwidth,sep=1ex,leftskip=1em,rightskip=1em,ht=12.5ex,dp=1.5ex,center]{title}
+      \usebeamerfont{title}\inserttitle
+      \vskip0.5em
+      \usebeamerfont{subtitle}\insertsubtitle
+    \end{beamercolorbox}
+    \vskip1em
+    {\usebeamerfont{author}\textbf{Autores}\\ \insertauthor\par}
+    \vskip0.5em
+    {\usebeamerfont{tutor}\textbf{Director}\\ \inserttutor\par}
+    \vskip1em
+    {\usebeamerfont{institute}\insertinstitute\par}
+    \vskip1.25em
+    {\usebeamerfont{date}\insertdate\par}
+  \end{center}
+  \vfill
 }
 
 \newcommand{\comillas}[1]{\guillemotleft #1\guillemotright{}}
