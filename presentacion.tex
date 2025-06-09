@@ -75,10 +75,55 @@
 	\end{columns}
 \end{frame}
 \section{Diseño del motor de \baker}
-\begin{frame}{Diseño del motor (I) }
-a
+\begin{frame}{\textit{Core}}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\begin{itemize}
+				\item Sistema de entidad componente.
+				\item Sistema de recursos.
+			\end{itemize}
+		\column{0.5\textwidth}	
+			\includegraphics[height=0.85\textheight]{imgs/motor/Core.pdf}
+	\end{columns}
 \end{frame}
-
+\begin{frame}{Componentes genéricos}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item Sistema de \textit{renderizado}.
+			\item Sistema de audio.
+			\item Sistema de \textit{input}.
+			\item Sistema de colisiones.
+		\end{itemize}
+		\column{0.5\textwidth}
+			\includegraphics[height=0.85\textheight]{imgs/motor/ComponentesGenericos.pdf}
+	\end{columns}
+\end{frame}
+\begin{frame}{Componentes específicos}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\begin{itemize}
+				\item Sistema de diálogos.
+				\item Sistema de movimiento.
+				\item Sistema de mapas.
+				\item Sistema de eventos.
+			\end{itemize}
+	 	\column{0.5\textwidth}
+			\includegraphics[height=0.85\textheight]{imgs/motor/ComponentesEspecificos.pdf}
+	\end{columns}
+\end{frame}
+\begin{frame}{Eventos}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\begin{itemize}
+				\item Condiciones.
+				\item Comportamientos.
+				\item Integración con el editor.
+			\end{itemize}
+	 	\column{0.5\textwidth}
+ 				\includegraphics[height=0.85\textheight]{imgs/motor/Eventos.pdf}
+	\end{columns}
+\end{frame}
 \section{Diseño del editor de \baker}
 \begin{frame}{Editor de \baker}
 	\includegraphics[width=\textwidth]{imgs/editor/editorMapas.pdf}
@@ -215,7 +260,14 @@ a
 \end{frame}
 
 \begin{frame}{Alejandro González Sánchez}
-a
+	\begin{itemize}
+		\item Technical proof of concept
+		\item \baker{}'s engine design.
+		\item Engine low level development.
+		\item Engine gameplay development.
+		\item \baker{}'s Editor's interface development.
+		\item Editor's building process.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Alejandro Massó Martínez}
