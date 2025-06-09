@@ -23,12 +23,16 @@
 \makeatletter
 \setbeamertemplate{footline}{
   \ifnum\insertframenumber>2
-    \hfill
-    \usebeamercolor[fg]{page number in head/foot}
-    \usebeamerfont{page number in head/foot}
-    \insertframenumber{} / \inserttotalframenumber
-    \hspace{1em}
-    \vspace{0.5em}
+    \leavevmode%
+    \hbox{%
+      \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\insertsection
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,right]{page number in head/foot}%
+        \usebeamerfont{page number in head/foot}\insertframenumber{} / \inserttotalframenumber\hspace{1em}
+      \end{beamercolorbox}%
+    }%
+    \vskip0pt%
   \fi
 }
 \makeatother
@@ -55,14 +59,14 @@
 \section{Objetivos}
 \begin{frame}{Objetivos}
 	\begin{columns}
-		\column{0.5\textwidth}
+		\column{0.7\textwidth}
 		\begin{itemize}
 			\item Motor 2D multiplataforma orientado a RPG.
 			\item Juegos definidos en archivos de datos.
 			\item Editor que permita diseñar los juegos.
 		\end{itemize}
-		\column{0.5\textwidth}
-		\includegraphics[width=\textwidth]{imgs/objetivos/android.pdf}
+		\column{0.3\textwidth}
+		\includegraphics[width=0.8\textwidth]{imgs/objetivos/android.pdf}
 	\end{columns}
 \end{frame}
 
@@ -287,6 +291,12 @@
 		\item \baker{}'s editor development.
 		\item Report writing.
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{¿Preguntas?}
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{imgs/cmn/preguntas.pdf}
+	\end{center}
 \end{frame}
 
 \end{document}
