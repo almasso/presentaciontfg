@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
@@ -18,6 +18,20 @@
 
 \usetheme{Berlin}
 \setbeamercolor{structure}{fg=RoyalPurple}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\setbeamertemplate{footline}{
+  \ifnum\insertframenumber>2
+    \hfill
+    \usebeamercolor[fg]{page number in head/foot}
+    \usebeamerfont{page number in head/foot}
+    \insertframenumber{} / \inserttotalframenumber
+    \hspace{1em}
+    \vspace{0.5em}
+  \fi
+}
+\makeatother
 
 \title[Motor y editor de videojuegos en 2D enfocado al desarrollo de juegos RPG]{Motor y editor de videojuegos en 2D enfocado al desarrollo de juegos RPG}
 \subtitle{2D video game engine and editor focused on RPG game development}
@@ -153,7 +167,7 @@
 		 		\item Soporte de elementos visuales como \textit{tooltips} o mensajes de error.
 		 	\end{itemize}
 		 \column{0.6\textwidth}
-		 	\includegraphics[width=\textwidth]{imgs/editor/eventos.pdf}
+		 	\includegraphics[width=0.9\textwidth]{imgs/editor/eventos.pdf}
 	\end{columns}
 \end{frame}
 
