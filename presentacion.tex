@@ -75,170 +75,10 @@
 	\end{columns}
 \end{frame}
 \section{Diseño del motor de \baker}
-\begin{frame}{\textit{Core}}
-	\begin{columns}
-		\column{0.4\textwidth}
-			\begin{itemize}
-				\item Sistema de entidad componente.
-				\item Sistema de recursos.
-			\end{itemize}
-	 	\column{0.6\textwidth}
-			\begin{tikzpicture}
-				\begin{class}[text width=5cm]{SceneManager}{-1,0}
-					\attribute{- scenes : list<Scene>}
-					\operation{+ addScene(string): Scene}
-					\operation{+ popScene() : void}
-					\operation{+ update() : bool}
-					\operation{+ render() : bool}
-				\end{class}
-				\begin{class}[text width=5cm]{Scene}{7,0}
-					\attribute{- entities : list<Entity>}
-					\operation{+ init() : bool}
-					\operation{+ update() : bool}
-					\operation{+ render() : bool}
-					\operation{+ refresh() : void}
-				\end{class}
-				\begin{class}[text width=5cm]{Entity}{7,-5}
-					\attribute{- enabled : bool}
-					\attribute{- components : list<Component>}
-					\operation{+ init() : bool}
-					\operation{+ update() : bool}
-					\operation{+ fixedUpdate() : bool}
-					\operation{+ setEnabled(bool) : bool}
-				\end{class}
-				\begin{class}[text width=5cm]{Component}{-1,-5}
-					\attribute{- enabled : bool}
-					\attribute{- entity : Entity}
-					\operation{+ init() : bool}
-					\operation{+ update() : bool}
-					\operation{+ setEnabled(bool) : bool}
-					\operation{+ onEnabled() : bool}
-					\operation{+ onDisabled() : bool}
-				\end{class}
-				\composition{SceneManager}{}{}{Scene}
-				\aggregation{Scene}{}{}{Entity}
-				\composition{Entity}{}{}{Component}
-			\end{tikzpicture}
-	\end{columns}
+\begin{frame}{Diseño del motor (I) }
+a
 \end{frame}
-\begin{frame}{Componentes genéricos}
-	\begin{columns}
-		\column{0.4\textwidth}
-			\begin{itemize}
-				\item Sistema de \textit{renderizado}.
-				\item Sistema de audio.
-				\item Sistema de \textit{input}.
-				\item Sistema de colisiones.		
-			\end{itemize}
-	 	\column{0.6\textwidth}
-		 	\begin{tikzpicture}[
-		 		bigbox/.style={rectangle, draw, thick, minimum width=6cm, minimum height=3cm, fill=#1!20},
-		 		subbox/.style={rectangle, draw, thick, minimum width=4.5cm, minimum height=0.8cm, fill=white},
-		 		innerbox/.style={rectangle, draw, thick, minimum width=3.5cm, minimum height=0.6cm, fill=white},
-		 		node distance=0.6cm,
-		 		font=\sffamily
-		 		]
-		 		% Render
-		 		\node[bigbox=blue, label=above:{\textbf{Render}}] (render) at (0,0) {};
-		 		\node[subbox] (camera) [below left=0.2cm and 0.3cm of rendercomp.north] {Camera};
-		 		\node[subbox] (rectangle) [below=0.2cm of camera] {Rectangle};
-		 		\node[subbox] (text) [below=0.2cm of rectangle] {Text};
-		 		\node[subbox] (sprite) [right=0.5cm of rectangle] {SpriteRenderer};
-		 		\node[innerbox] (animator) [below=0.2cm of sprite] {Animator};
-		 		% Audio
-		 		\node[bigbox=orange, label=above:{\textbf{Audio}}] (audio) [right=5.5cm of render] {};
-		 		\node[subbox] (audiosource) [below left=0.2cm and 0.3cm of audio.north] {AudioSource};
-		 		\node[subbox] (audiomixer) [below=0.2cm of audiosource] {AudioMixer};
-		 		\node[subbox] (audioclip) [below=0.2cm of audiomixer] {AudioClip};
-		 		% Input
-		 		\node[bigbox=green, label=above:{\textbf{Input}}] (input) [below=4.5cm of rendercomp.south] {};
-		 		\node[subbox] (inputstate) [below left=0.2cm and 0.3cm of input.north] {InputState};
-		 		\node[subbox] (button) [below=0.2cm of inputstate] {Button};
-		 		% Collisions
-		 		\node[bigbox=red, label=above:{\textbf{Collisions}}] (collisions) [right=5.5cm of input] {};
-		 		\node[subbox] (collider) [below=0.5cm of collisions.north] {Collider};
-		 		% Conexión SpriteRenderer -> Animator
-		 		\draw[-{Latex[length=2mm]}, thick] (sprite.south) -- (animator.north);
-		 	\end{tikzpicture}
-	\end{columns}
-\end{frame}
-\begin{frame}{Componentes específicos}
-	\begin{columns}
-		\column{0.4\textwidth}
-			\begin{itemize}
-				\item Sistema de diálogos.
-				\item Sistema de movimiento.
-				\item Sistema de mapas.
-				\item Sistema de eventos.
-			\end{itemize}
-	 	\column{0.6\textwidth}
-		 	\begin{tikzpicture}[
-		 		bigbox/.style={rectangle, draw, thick, minimum width=6cm, minimum height=3cm, fill=#1!20},
-		 		subbox/.style={rectangle, draw, thick, minimum width=4.5cm, minimum height=0.8cm, fill=white},
-		 		node distance=0.6cm,
-		 		font=\sffamily
-		 		]
-		 		% Dialogue
-		 		\node[bigbox=violet, label=above:{\textbf{Dialogue}}] (dialogue) at (0,0) {};
-		 		\node[subbox] (textbox) [below left=0.2cm and 0.3cm of dialogue.north] {TextBox};
-		 		\node[subbox] (choices) [below=0.2cm of textbox] {Choices};
-		 		% Movement
-		 		\node[bigbox=cyan, label=above:{\textbf{Movement}}] (movement) [right=6.5cm of dialogue] {};
-		 		\node[subbox] (movemgr) [below left=0.2cm and 0.3cm of movement.north] {MovementManager};
-		 		\node[subbox] (moveobst) [below=0.2cm of movemgr] {MovementObstacle};
-		 		\node[subbox] (movecomp) [below=0.2cm of moveobst] {MovementComponent};
-		 		% Maps
-		 		\node[bigbox=green, label=above:{\textbf{Maps}}] (maps) [below=4.5cm of dialogue.south] {};
-		 		\node[subbox] (overworld) [below left=0.2cm and 0.3cm of maps.north] {OverworldManager};
-		 		\node[subbox] (mapcomp) [below=0.2cm of overworld] {MapComponent};
-		 		% Events
-		 		\node[bigbox=orange, label=above:{\textbf{Events}}] (events) [right=6.5cm of maps] {};
-		 		\node[subbox] (eventhandler) [below left=0.2cm and 0.3cm of events.north] {EventHandler};
-		 		\node[subbox] (localvars) [below=0.2cm of eventhandler] {LocalVariables};
-		 	\end{tikzpicture}
-	\end{columns}
-\end{frame}
-\begin{frame}{Eventos}
-	\begin{columns}
-		\column{0.4\textwidth}
-			\begin{itemize}
-				\item \textit{Conditions}.
-				\item \textit{Behaviours}.
-				\item Integración con el editor.
-			\end{itemize}
-	 	\column{0.6\textwidth}
-	 		\begin{tikzpicture}[every node/.style={font=\small}]
-	 			\begin{class}[text width=5cm]{Event}{3,0}
-	 				\attribute{- condition : EventCondition}
-	 				\attribute{- behaviours : vector<EventBehaviour>}
-	 				\operation{+ update() : bool}
-	 				\operation{+ start() : void}
-	 				\operation{+ resume() : void}
-	 				\operation{+ pause() : void}
-	 				\operation{+ stop() : void}
-	 				\operation{+ jump(int) : void}
-	 			\end{class}
-	 			\begin{class}[text width=3cm]{EventCondition}{-1,-7}
-	 				\attribute{- scene : Scene}
-	 				\attribute{- entity : Entity}
-	 				\attribute{- event : Event}
-	 				\operation{+ met() : bool}
-	 			\end{class}
-	 			\begin{class}[text width=4cm]{EventBehaviour}{7,-7}
-	 				\attribute{- manager : SceneManager}
-	 				\attribute{- scene : Scene}
-	 				\attribute{- entity : Entity}
-	 				\attribute{- event : Event}
-	 				\operation{+ init() : bool}
-	 				\operation{+ onStart() : bool}
-	 				\operation{+ act() : bool}
-	 				\operation{+ done() : bool}
-	 			\end{class}
-	 			\composition{Event}{}{}{EventCondition}
-	 			\composition{Event}{}{}{EventBehaviour}
-	 		\end{tikzpicture}
-	\end{columns}
-\end{frame}
+
 \section{Diseño del editor de \baker}
 \begin{frame}{Editor de \baker}
 	\includegraphics[width=\textwidth]{imgs/editor/editorMapas.pdf}
@@ -366,14 +206,7 @@ a
 \end{frame}
 
 \begin{frame}{Alejandro González Sánchez}
-	\begin{itemize}
-		\item Technical proof of concept
-		\item \baker{}'s engine design.
-		\item Engine low level development.
-		\item Engine gameplay development.
-		\item \baker{}'s Editor's interface development.
-		\item Editor's building process.
-	\end{itemize}
+a
 \end{frame}
 
 \begin{frame}{Alejandro Massó Martínez}
